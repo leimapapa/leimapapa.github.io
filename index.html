@@ -11,13 +11,13 @@
 			--glass-border: rgba(255, 255, 255, 0.2);
 			--glass-hover: rgba(255, 255, 255, 0.15);
 		}
-	
+
 		* {
 			margin: 0;
 			padding: 0;
 			box-sizing: border-box;
 		}
-	
+
 		body {
 			background: linear-gradient(135deg, #000000, #1a1a1a);
 			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' id='bp'%3E%3Cdefs%3E%3CradialGradient id='grad'%3E%3Cstop offset='0%25' stop-color='%231a1a1a' /%3E%3Cstop offset='100%25' stop-color='%23000' /%3E%3C/radialGradient%3E%3Cpattern id='grid' width='100' height='100' patternUnits='userSpaceOnUse' patternTransform='scale(0.5) skewY(10) skewX(-30)'%3E%3Cpath d='M10 0v100m10 0v-100m10 0v100m10 0v-100m10 0v100m10 0v-100m10 0v100m10 0v-100m10 0v100M0 10h100m0 10h-100m0 10h100m0 10h-100m0 10h100m0 10h-100m0 10h100m0 10h-100m0 10h100' fill='none' stroke='rgba(255,255,255,0.1)' /%3E%3Cpath d='M0 0l0 100 100 0 0-100z' fill='none' stroke='rgba(255,255,255,0.2)' /%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grad)' /%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)' /%3E%3C/svg%3E");
@@ -27,7 +27,7 @@
 			padding: 2rem;
 			position: relative;
 		}
-	
+
 		.logo-container {
 			position: fixed;
 			opacity: 0.8;
@@ -35,7 +35,7 @@
 			height: 150px;
 			width: 150px;
 		}
-	
+
 		@media (min-width: 769px) {
 			.logo-container {
 				top: 2rem;
@@ -44,7 +44,7 @@
 				width: 60px;
 			}
 		}
-	
+
 		@media (max-width: 768px) {
 			.logo-container {
 				top: 2rem;
@@ -52,20 +52,20 @@
 				transform: translateX(-50%);
 			}
 		}
-	
+
 		.logo {
 			width: 100%;
 			height: 100%;
 			object-fit: contain;
 			filter: brightness(0.9);
 		}
-	
+
 		.content {
 			max-width: 1200px;
 			margin: 0 auto;
 			margin-top: 6rem;
 		}
-	
+
 		.grid {
 			display: grid;
 			grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -73,7 +73,7 @@
 			position: relative;
 			z-index: 2;
 		}
-	
+
 		.link-card {
 			background: var(--glass-bg);
 			backdrop-filter: blur(12px);
@@ -89,7 +89,7 @@
 			display: flex;
 			gap: 1rem;
 		}
-	
+
 		.link-card::before {
 			content: '';
 			position: absolute;
@@ -103,21 +103,21 @@
 			opacity: 0;
 			transition: opacity 0.3s ease;
 		}
-	
+
 		.link-card:hover {
 			transform: translateY(-5px);
 			border-color: rgba(255, 255, 255, 0.3);
 			background: var(--glass-hover);
 		}
-	
+
 		.link-card:hover::before {
 			opacity: 1;
 		}
-	
+
 		.link-content {
 			flex: 1;
 		}
-	
+
 		.link-title {
 			font-size: 1.25rem;
 			font-weight: 600;
@@ -125,20 +125,20 @@
 			position: relative;
 			padding-right: 1.5rem;
 		}
-	
+
 		.link-description {
 			color: rgba(255, 255, 255, 0.8);
 			font-size: 0.95rem;
 			line-height: 1.5;
 			position: relative;
 		}
-	
+
 		.tool-icon {
 			width: 32px;
 			height: 32px;
 			opacity: 0.7;
 		}
-	
+
 		.external-icon {
 			position: absolute;
 			top: 0.25rem;
@@ -148,20 +148,20 @@
 			opacity: 0.5;
 			transition: opacity 0.3s ease;
 		}
-	
+
 		.link-card:hover .external-icon {
 			opacity: 0.8;
 		}
-	
+
 		@media (max-width: 768px) {
 			body {
 				padding: 1rem;
 			}
-	
+
 			.content {
 				margin-top: 12rem;
 			}
-	
+
 			.grid {
 				grid-template-columns: 1fr;
 			}
@@ -170,9 +170,9 @@
 			padding-bottom: 3rem;
 		}
 	</style>
-	</head>
-	
-	<body>
+</head>
+
+<body>
 	<div class="logo-container">
 		<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" id="leimoHyperspace" class="logo">
 			<mask id="m1">
@@ -498,20 +498,26 @@
 			</g>
 		</svg>
 	</div>
-	
+
 	<main class="content">
 		<div class="grid">
 			<!-- Links will be populated here by JavaScript -->
 		</div>
 	</main>
-	
+
 	<script>
 		const links = [{
 				title: "Flock Paper Scissors",
 				description: "Flocking simulation resolving the a game of rock paper scissors",
 				url: "/FlockPaperScissors",
 				icon: `<svg xmlns="http://www.w3.org/2000/svg" class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" y1="4" x2="8.12" y2="15.88"></line><line x1="14.47" y1="14.48" x2="20" y2="20"></line><line x1="8.12" y1="8.12" x2="12" y2="12"></line></svg>`
+			},{
+				title: "Emoji Spinner",
+				description: "Roulette Wheel of Emojis",
+				url: "/EmojiSpinner",
+				icon: `<svg xmlns="http://www.w3.org/2000/svg" class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`
 			},
+									 
 			{
 				title: "Inflation Calculator",
 				description: "Dead simple. Not exactly dead accurate",
@@ -544,21 +550,21 @@
 			}
 		];
 		const externalIcon = `<svg xmlns="http://www.w3.org/2000/svg" class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
-	
+
 		function createCards() {
 			const grid = document.querySelector('.grid');
 			grid.innerHTML = links.map(link => `
-		<a href="${link.url}" class="link-card">
-		    ${link.icon || ''}
-		    <div class="link-content">
-			<h2 class="link-title">
-			    ${link.title}
-			    ${externalIcon}
-			</h2>
-			<p class="link-description">${link.description}</p>
-		    </div>
-		</a>
-	    `).join('');
+                <a href="${link.url}" class="link-card">
+                    ${link.icon || ''}
+                    <div class="link-content">
+                        <h2 class="link-title">
+                            ${link.title}
+                            ${externalIcon}
+                        </h2>
+                        <p class="link-description">${link.description}</p>
+                    </div>
+                </a>
+            `).join('');
 		}
 		createCards();
 	</script>
