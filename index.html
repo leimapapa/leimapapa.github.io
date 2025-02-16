@@ -68,10 +68,57 @@
 
 		.grid {
 			display: grid;
-			grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+			grid-template-columns: repeat(3, 1fr);
 			gap: 1.5rem;
 			position: relative;
 			z-index: 2;
+		}
+
+		/* Handle last row alignment for both one and two items */
+		@media (min-width: 769px) {
+
+			/* When there's one item left */
+			.grid>*:last-child:nth-child(3n + 1) {
+				grid-column: 3;
+			}
+
+			/* When there are two items left */
+			.grid>*:nth-last-child(2):nth-child(3n + 1) {
+				grid-column: 2;
+			}
+
+			.grid>*:last-child:nth-child(3n + 2) {
+				grid-column: 3;
+			}
+		}
+
+		@media (max-width: 1200px) {
+			.grid {
+				grid-template-columns: repeat(2, 1fr);
+			}
+
+			/* Reset the 3-column rules */
+			.grid>*:last-child:nth-child(3n + 1),
+			.grid>*:nth-last-child(2):nth-child(3n + 1),
+			.grid>*:last-child:nth-child(3n + 2) {
+				grid-column: auto;
+			}
+
+			/* Apply new rules for 2-column layout */
+			.grid>*:last-child:nth-child(2n + 1) {
+				grid-column: 2;
+			}
+		}
+
+		@media (max-width: 768px) {
+			.grid {
+				grid-template-columns: 1fr;
+			}
+
+			/* Reset all positioning for mobile */
+			.grid>* {
+				grid-column: 1 !important;
+			}
 		}
 
 		.link-card {
@@ -166,6 +213,7 @@
 				grid-template-columns: 1fr;
 			}
 		}
+
 		main {
 			padding-bottom: 3rem;
 		}
@@ -511,13 +559,12 @@
 				description: "Flocking simulation resolving the a game of rock paper scissors",
 				url: "/FlockPaperScissors",
 				icon: `<svg xmlns="http://www.w3.org/2000/svg" class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" y1="4" x2="8.12" y2="15.88"></line><line x1="14.47" y1="14.48" x2="20" y2="20"></line><line x1="8.12" y1="8.12" x2="12" y2="12"></line></svg>`
-			},{
+			}, {
 				title: "Emoji Spinner",
 				description: "Roulette Wheel of Emojis",
 				url: "/EmojiSpinner",
 				icon: `<svg xmlns="http://www.w3.org/2000/svg" class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`
 			},
-									 
 			{
 				title: "Inflation Calculator",
 				description: "Dead simple. Not exactly dead accurate",
@@ -541,6 +588,12 @@
 				description: "Create a brain for a fighting robot! Compete against other robots! Have a tournament! Learn basic code!",
 				url: "/robo-wars",
 				icon: `<svg xmlns="http://www.w3.org/2000/svg" class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="22" y1="12" x2="18" y2="12"></line><line x1="6" y1="12" x2="2" y2="12"></line><line x1="12" y1="6" x2="12" y2="2"></line><line x1="12" y1="22" x2="12" y2="18"></line></svg>`
+			},
+			{
+				title: "Circle Clock",
+				description: "Unique widget displaying the time in a circle",
+				url: "/CircleClock",
+				icon: `<svg xmlns="http://www.w3.org/2000/svg" class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`
 			},
 			{
 				title: "Christmas Countdown",
