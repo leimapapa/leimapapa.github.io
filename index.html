@@ -5,6 +5,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="leimo.svg">
     <title>Leimo Labs</title>
+	
+    <meta name="title" content="Simple, free online tools and utilities">
+    <meta name="description" content="Simple, free online tools and utilities">
+    <meta name="keywords" content="web development tools, baby growth tracker, games, developer utilities">
+    <meta name="author" content="Leimo Labs">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://leimolabs.com">
+    <meta property="og:title" content="Simple, free online tools and utilities">
+    <meta property="og:description" content="Free online web development tools including image converter, baby growth tracker, widgets and more.">
+    <meta property="og:image" content="https://yourwebsite.com/path-to-your-banner-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://leimolabs.com">
+    <meta property="twitter:title" content="Web Developer Tools & Utilities">
+    <meta property="twitter:description" content="Free online web development tools including image converter, baby growth tracker, widgets and more.">
+    <meta property="twitter:image" content="https://leimolabs.com/leimo.svg">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" href="leimo.svg">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Leimo Labs",
+      "description": "Collection of free online web development tools and utilities",
+      "url": "https://leimolabs.com",
+      "applicationCategory": "DeveloperApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Leimo Labs"
+      },
+  "hasPart": [
+    {
+      "@type": "WebPage",
+      "name": "Flock Paper Scissors",
+      "description": "Flocking simulation resolving the a game of rock paper scissors",
+      "url": "/FlockPaperScissors"
+    },
+    {
+      "@type": "WebPage",
+      "name": "Baby Growth Tracker",
+      "description": "Track your baby's growth! Use and share with the due date in the URL to keep track of how big it's getting.",
+      "url": "/BabyGrowthTracker"
+    },
+    {
+      "@type": "WebPage",
+      "name": "Emoji Spinner",
+      "description": "Roulette Wheel of Emojis",
+      "url": "/EmojiSpinner"
+    },
+    {
+      "@type": "WebPage",
+      "name": "Inflation Calculator",
+      "description": "Dead simple. Not exactly dead accurate",
+      "url": "/InflationCalculator"
+    },
+    {
+      "@type": "WebPage",
+      "name": "SWOT Analysis Tool",
+      "description": "Who wants to struggle with a stupid powerpoint template when you can make a SWOT analysis with this simple tool and screenshot it",
+      "url": "/SWOT"
+    },
+    {
+      "@type": "WebPage",
+      "name": "SVG to PNG/JPEG",
+      "description": "Convert an SVG string to JPEG or PNG",
+      "url": "/SVGtoPNG"
+    },
+    {
+      "@type": "WebPage",
+      "name": "Robo Wars",
+      "description": "Create a brain for a fighting robot! Compete against other robots! Have a tournament! Learn basic code!",
+      "url": "/robo-wars"
+    },
+    {
+      "@type": "WebPage",
+      "name": "Circle Clock",
+      "description": "Unique widget displaying the time in a circle",
+      "url": "/CircleClock"
+    },
+    {
+      "@type": "WebPage",
+      "name": "Christmas Countdown",
+      "description": "How long til Christmas?",
+      "url": "/ChristmasCountdown"
+    }
+  ]
+}
+    </script>
+</head>
+
 	<style>
 		:root {
 			--glass-bg: rgba(255, 255, 255, 0.1);
@@ -653,5 +754,23 @@
 			'floating-chat.donateButton.text-color': '#fff'
 		});
 	</script>
+	<script>
+        // Add screen reader only style
+        const style = document.createElement('style');
+        style.textContent = `
+            .sr-only {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+                border: 0;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>
