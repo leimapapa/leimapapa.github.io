@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="leimo.svg">
+    <title>Page Not Found</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: center;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            padding: 40px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h1 {
+            font-size: 48px;
+            margin: 0 0 20px;
+            color: #333;
+        }
+        .message {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .back-link {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        #redirect-message {
+            display: none;
+            color: #0366d6;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            // Get the current path from the URL
+            let path = window.location.pathname;
+            
+            // Remove leading and trailing slashes
+            path = path.replace(/^\/|\/$/g, '');
+            
+            // List of your repository names
+            const repos = ['EmojiSpinner', 'BabyGrowthTracker', 'CircleClock', 'FlockPaperScissors', 'InflationCalculator', 'ChristmasCountdown', 'SWOT', 'CryptoCalendar', 'SVGtoPNG']; // All repo names here
+            
+            // Only redirect if the path is lowercase and matches a repo case-insensitively
+            if (path.toLowerCase() === path && path !== '') {
+                const matchingRepo = repos.find(repo => repo.toLowerCase() === path.toLowerCase());
+                
+                if (matchingRepo) {
+                    document.getElementById('redirect-message').style.display = 'block';
+                    setTimeout(() => {
+                        window.location.href = '/' + matchingRepo;
+                    }, 1500); // Redirect after 1.5 seconds
+                    return;
+                }
+            }
+            
+            // If we get here, show the 404 content (it's already visible by default)
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>404</h1>
+        <p class="message">The page you're looking for doesn't exist or has been moved.</p>
+        <p><a href="/" class="back-link">Go back to homepage</a></p>
+        <p id="redirect-message">Redirecting to the correct page...</p>
+    </div>
+</body>
+</html>
