@@ -66,7 +66,7 @@ const links = [{
 				title: "Christmas Countdown",
 				description: "How long til Christmas?",
 				url: "/ChristmasCountdown",
-				icon: `<svg xmlns="http://www.w3.org/2000/svg" class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`
+				icon: `<svg xmlns="http://www.w3.org/2000/svg" class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M 3 13 l 9 -5 l 9 5 m -16 -1 l 0 9 m 14 -9 l 0 9 m -8 0 l -1 -2 l 4 0 l -1 2 m -2 -3 a 1 1 0 0 1 2 0 m -6 3 l 0 -7 a 1 1 0 1 1 1 1 l 1 6 m 5 0 l 2 -3 a 1 1 0 1 1 1 -1 l 0 4 m -5 -14 l 0 -4 m -1 1 l 2 1 m 0 -1 l -2 1"/></svg>`
 			},
 			{
 				title: "SVG Path Point Converter",
