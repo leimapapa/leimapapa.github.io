@@ -72,7 +72,7 @@ const links = [{
 				title: "Christmas Countdown",
 				description: "How long til Christmas?",
 				url: "/ChristmasCountdown",
-				icon: `<svg xmlns="http://www.w3.org/2000/svg" class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M 2 13 l 10 -5 l 10 5 m -18 -1 l -1 10 m 17 -10 l 1 10 m -9 0 l -2 -3 l 4 0 z m -1 -4 a 1 1 0 0 1 2 0 m -7 4 l 0 -7 a 1 1 0 1 1 1 1 l 1 6 z m 9 0 l 2 -3 a 1 1 0 1 1 1 -1 l 0 4 z m -3 -17 l 0 -4 m -2 1 l 4 2 m 0 -2 l -4 2"/></svg>`
+				icon: `<svg xmlns="http://www.w3.org/2000/svg" class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M 2 13 l 10 -5 l 10 5 m -18 -1 l -1 10 m 17 -10 l 1 10 m -9 0 l -2 -3 l 4 0 z m -1 -4 a 1 1 0 0 1 2 0 m -7 4 l 0 -7 a 1 1 0 1 1 1 1 l 1 6z m 9 0 l 2 -3 a 1 1 0 1 1 1 -1 l 0 4z m -3 -16.5 l 0 -4 m -2 1 l 4 2 m 0 -2 l -4 2"/></svg>`
 			},
 			{
 				title: "SVG Path Point Converter",
