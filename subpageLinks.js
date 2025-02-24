@@ -63,6 +63,12 @@ const links = [{
 				icon: `<svg xmlns="http://www.w3.org/2000/svg" class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`
 			},
 			{
+				title: "Street Name Generator",
+				description: "Create a street name with this handy randomizer",
+				url: "/StreetNameGenerator",
+				icon: `<svg xmlns="http://www.w3.org/2000/svg" class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-15h-10v-5h20v5h-10m-7 -2.5h4m3 0 h3m3 0h1" /></svg>`
+			},
+			{
 				title: "Christmas Countdown",
 				description: "How long til Christmas?",
 				url: "/ChristmasCountdown",
