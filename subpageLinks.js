@@ -63,6 +63,12 @@ const links = [{
 				icon: `<svg xmlns="http://www.w3.org/2000/svg" class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`
 			},
 			{
+				title: "Train Clock",
+				description: "Unique widget displaying the time as trains",
+				url: "/TrainClock",
+				icon: `<svg xmlns="http://www.w3.org/2000/svg" class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M 19 18 l 1 0 a 1 2 0 0 0 0 -5 l -1 0 v -3 a 0.5 0.5 0 0 0 0 -1 h -3 a 0.5 0.5 0 0 0 0 1 v 3 l -2 0 a 1 1 0 0 0 -2 0 h -3 v -2 a 0.5 0.5 0 0 0 0 -1 h -6 a 0.5 0.5 0 0 0 0 1 v 6 a 1 1 0 0 0 1 1 a 1 1 0 0 0 5 0 a 1 1 0 0 0 5 0 a 1 1 0 0 0 5 0 z m -2 -11 a 1 1 0 0 0 -1 -2.5 a 4 4 0 0 0 -5 -1 a 1 1 0 0 0 -5 3.5 a 2 2 0 0 0 3 0 a 3 3 0 0 0 4 0 c 2 -1 2 1 4 0 z" /></svg>`
+			},
+			{
 				title: "Street Name Generator",
 				description: "Create a street name with this handy randomizer",
 				url: "/StreetNameGenerator",
