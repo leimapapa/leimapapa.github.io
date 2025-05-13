@@ -7,13 +7,12 @@ export function createNavbar(customStyles = {}) {
   // Default styling for the navbar
   const defaultStyles = {
     position: 'fixed',
-    top: '0',
-    left: '0',
+    top: '5px',
+    left: '5px',
     width: '100%',
     height: '24px',
     display: 'flex',
     alignItems: 'center',
-    padding: '5px',
     zIndex: '1000',
     background: 'transparent'
   };
