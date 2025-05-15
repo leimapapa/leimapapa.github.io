@@ -86,6 +86,12 @@
     },
     {
       "@type": "WebPage",
+      "name": "SVG to PNG/JPEG",
+      "description": "Convert an animated SVG a GIF. Supports transparent GIFs as well!",
+      "url": "/SVGtoGIF"
+    },
+    {
+      "@type": "WebPage",
       "name": "Robo Wars",
       "description": "Create a brain for a fighting robot! Compete against other robots! Have a tournament! Learn basic code!",
       "url": "/robo-wars"
@@ -115,582 +121,768 @@
 
 	<style>
 		:root {
-			--glass-bg: rgba(255, 255, 255, 0.1);
-			--glass-border: rgba(255, 255, 255, 0.2);
-			--glass-hover: rgba(255, 255, 255, 0.15);
-		}
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-hover: rgba(255, 255, 255, 0.15);
+            --text-color: #fff;
+            --heading-color: #fff;
+            --link-color: #76FF03;
+        }
 
-		* {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-		}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-		body {
-			background: linear-gradient(135deg, #000000, #1a1a1a);
-			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' id='bp'%3E%3Cdefs%3E%3CradialGradient id='grad'%3E%3Cstop offset='0%25' stop-color='%231a1a1a' /%3E%3Cstop offset='100%25' stop-color='%23000' /%3E%3C/radialGradient%3E%3Cpattern id='grid' width='100' height='100' patternUnits='userSpaceOnUse' patternTransform='scale(0.5) skewY(10) skewX(-30)'%3E%3Cpath d='M10 0v100m10 0v-100m10 0v100m10 0v-100m10 0v100m10 0v-100m10 0v100m10 0v-100m10 0v100M0 10h100m0 10h-100m0 10h100m0 10h-100m0 10h100m0 10h-100m0 10h100m0 10h-100m0 10h100' fill='none' stroke='rgba(255,255,255,0.1)' /%3E%3Cpath d='M0 0l0 100 100 0 0-100z' fill='none' stroke='rgba(255,255,255,0.2)' /%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grad)' /%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)' /%3E%3C/svg%3E");
-			color: #fff;
-			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-			min-height: 100vh;
-			padding: 2rem;
-			position: relative;
-		}
+        body {
+            background: linear-gradient(135deg, #000000, #1a1a1a);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' id='bp'%3E%3Cdefs%3E%3CradialGradient id='grad'%3E%3Cstop offset='0%25' stop-color='%231a1a1a' /%3E%3Cstop offset='100%25' stop-color='%23000' /%3E%3C/radialGradient%3E%3Cpattern id='grid' width='100' height='100' patternUnits='userSpaceOnUse' patternTransform='scale(0.5) skewY(10) skewX(-30)'%3E%3Cpath d='M10 0v100m10 0v-100m10 0v100m10 0v-100m10 0v100m10 0v-100m10 0v100m10 0v-100m10 0v100M0 10h100m0 10h-100m0 10h100m0 10h-100m0 10h100m0 10h-100m0 10h100m0 10h-100m0 10h100' fill='none' stroke='rgba(255,255,255,0.1)' /%3E%3Cpath d='M0 0l0 100 100 0 0-100z' fill='none' stroke='rgba(255,255,255,0.2)' /%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grad)' /%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)' /%3E%3C/svg%3E");
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            position: relative;
+            line-height: 1.6;
+        }
 
-		.logo-container {
-			position: fixed;
-			opacity: 0.8;
-			transition: all 0.3s ease;
-			height: 150px;
-			width: 150px;
-		}
+        /* Logo Styling */
+        .logo-container {
+            position: fixed;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            height: 100px;
+            width: 100px;
+            z-index: 10;
+        }
 
-		@media (min-width: 769px) {
-			.logo-container {
-				top: 2rem;
-				left: 2rem;
-				height: 60px;
-				width: 60px;
-			}
-		}
+        .logo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: brightness(0.9);
+        }
 
-		@media (max-width: 768px) {
-			.logo-container {
-				top: 2rem;
-				left: 50%;
-				transform: translateX(-50%);
-			}
-		}
+        /* Main Content Area */
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-top: 8rem;
+            position: relative;
+            z-index: 2;
+        }
 
-		.logo {
-			width: 100%;
-			height: 100%;
-			object-fit: contain;
-			filter: brightness(0.9);
-		}
+        /* Category Section Styling */
+        .category-section {
+            margin-bottom: 3rem;
+        }
 
-		.content {
-			max-width: 1200px;
-			margin: 0 auto;
-			margin-top: 6rem;
-		}
+        .category-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--heading-color);
+            border-bottom: 2px solid var(--link-color);
+            padding-bottom: 0.5rem;
+            text-shadow: 0 0 5px rgba(118, 255, 3, 0.3);
+        }
 
-		.grid {
-			display: grid;
-			grid-template-columns: repeat(3, 1fr);
-			gap: 1.5rem;
-			position: relative;
-			z-index: 2;
-		}
+        /* Category Grid for Links */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
 
-		/* Handle last row alignment for both one and two items */
-		@media (min-width: 769px) {
+        /* Link Card Styling (Glassmorphic) */
+        .link-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text-color);
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            gap: 1rem;
+            height: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
 
-			/* When there's one item left */
-			.grid>*:last-child:nth-child(3n + 1) {
-				grid-column: 3;
-			}
+        .link-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg,
+                    rgba(255, 255, 255, 0.1),
+                    rgba(255, 255, 255, 0.05));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
 
-			/* When there are two items left */
-			.grid>*:nth-last-child(2):nth-child(3n + 1) {
-				grid-column: 2;
-			}
+        .link-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.4);
+            background: var(--glass-hover);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
 
-			.grid>*:last-child:nth-child(3n + 2) {
-				grid-column: 3;
-			}
-		}
+        .link-card:hover::before {
+            opacity: 1;
+        }
 
-		@media (max-width: 1200px) {
-			.grid {
-				grid-template-columns: repeat(2, 1fr);
-			}
+        .link-content {
+            flex: 1;
+        }
 
-			/* Reset the 3-column rules */
-			.grid>*:last-child:nth-child(3n + 1),
-			.grid>*:nth-last-child(2):nth-child(3n + 1),
-			.grid>*:last-child:nth-child(3n + 2) {
-				grid-column: auto;
-			}
+        .link-title {
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            position: relative;
+            padding-right: 1.5rem;
+            color: var(--heading-color);
+        }
 
-			/* Apply new rules for 2-column layout */
-			.grid>*:last-child:nth-child(2n + 1) {
-				grid-column: 2;
-			}
-		}
+        .link-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            line-height: 1.5;
+            position: relative;
+        }
 
-		@media (max-width: 768px) {
-			.grid {
-				grid-template-columns: 1fr;
-			}
+        .tool-icon {
+            width: 40px;
+            height: 40px;
+            opacity: 0.7;
+            flex-shrink: 0;
+        }
 
-			/* Reset all positioning for mobile */
-			.grid>* {
-				grid-column: 1 !important;
-			}
-		}
+        .external-icon {
+            position: absolute;
+            top: 0.5rem;
+            right: 0;
+            width: 20px;
+            height: 20px;
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+        }
 
-		.link-card {
-			background: var(--glass-bg);
-			backdrop-filter: blur(12px);
-			-webkit-backdrop-filter: blur(12px);
-			border: 1px solid var(--glass-border);
-			border-radius: 16px;
-			padding: 1.5rem;
-			transition: all 0.3s ease;
-			text-decoration: none;
-			color: white;
-			overflow: hidden;
-			position: relative;
-			display: flex;
-			gap: 1rem;
-		}
+        .link-card:hover .external-icon {
+            opacity: 0.8;
+        }
 
-		.link-card::before {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			background: linear-gradient(45deg,
-					rgba(255, 255, 255, 0.1),
-					rgba(255, 255, 255, 0.05));
-			opacity: 0;
-			transition: opacity 0.3s ease;
-		}
+        /* Adsense Placeholder Styling */
+        .adsense-placeholder {
+            width: 100%;
+            min-height: 150px;
+            background: rgba(118, 255, 3, 0.1);
+            border: 1px dashed var(--link-color);
+            margin: 2rem 0;
+            /* Space above and below ad */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.1rem;
+            text-align: center;
+            border-radius: 8px;
+        }
 
-		.link-card:hover {
-			transform: translateY(-5px);
-			border-color: rgba(255, 255, 255, 0.3);
-			background: var(--glass-hover);
-		}
+        /* Responsive Adjustments */
+        @media (min-width: 769px) {
+            .logo-container {
+                top: 2rem;
+                left: 2rem;
+                height: 60px;
+                width: 60px;
+                transform: none;
+            }
 
-		.link-card:hover::before {
-			opacity: 1;
-		}
+            .content {
+                margin-top: 6rem;
+                padding: 0 2rem;
+            }
+        }
 
-		.link-content {
-			flex: 1;
-		}
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
 
-		.link-title {
-			font-size: 1.25rem;
-			font-weight: 600;
-			margin-bottom: 0.75rem;
-			position: relative;
-			padding-right: 1.5rem;
-		}
+            .content {
+                margin-top: 10rem;
+            }
 
-		.link-description {
-			color: rgba(255, 255, 255, 0.8);
-			font-size: 0.95rem;
-			line-height: 1.5;
-			position: relative;
-		}
+            .category-title {
+                font-size: 1.5rem;
+            }
 
-		.tool-icon {
-			width: 32px;
-			height: 32px;
-			opacity: 0.7;
-		}
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
 
-		.external-icon {
-			position: absolute;
-			top: 0.25rem;
-			right: 0;
-			width: 16px;
-			height: 16px;
-			opacity: 0.5;
-			transition: opacity 0.3s ease;
-		}
+            .link-card {
+                padding: 1rem;
+            }
 
-		.link-card:hover .external-icon {
-			opacity: 0.8;
-		}
+            .link-title {
+                font-size: 1.1rem;
+            }
 
-		@media (max-width: 768px) {
-			body {
-				padding: 1rem;
-			}
+            .link-description {
+                font-size: 0.9rem;
+            }
 
-			.content {
-				margin-top: 12rem;
-			}
+            .tool-icon {
+                width: 30px;
+                height: 30px;
+            }
 
-			.grid {
-				grid-template-columns: 1fr;
-			}
-		}
+            .external-icon {
+                width: 16px;
+                height: 16px;
+            }
+        }
 
-		main {
-			padding-bottom: 3rem;
-		}
+        /* Screen reader only style */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
 	</style>
 </head>
 
 <body>
 	<div class="logo-container">
-		<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" id="leimoHyperspace" class="logo">
-			<mask id="m1">
-				<path fill="#fff" d="M 50 0 a 50 50 90 1 0 0.01 0 m 0 30 a 20 20 90 1 1 -0.01 0 m -10 15 h 20 v 10 h -20 z" />
-			</mask>
-			<mask id="m2">
-				<path fill="#fff" d="M 20 0 h 60 l -27 45 l -6 0 z m 30 10 a 10 10 90 1 0 0.01 0" />
-			</mask>
-			<mask id="m3">
-				<path fill="#fff" d="M 53 55 l 27 45 h -60 l 27 -45 z m -3 15 a 10 10 90 1 0 0.01 0" />
-			</mask>
-			<g fill="none" stroke="#00f" stroke-dasharray="50" stroke-dashoffset="50" stroke-width="0.5" mask="url(#m1)">
-				<g id="hyper">
-					<path d="M 50 50 h50" transform="rotate(304 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.1s" begin="-3.2s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(121 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.6s" begin="-1.3s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(274 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.4s" begin="-0.6s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(268 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.6s" begin="-1.6s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(210 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.7s" begin="-1s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(260 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.4s" begin="-4.6s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(131 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.3s" begin="-3.4s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(52 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.8s" begin="-4.9s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(319 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.7s" begin="-3.3s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(43 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2s" begin="-3s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(217 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.3s" begin="-0.7s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(270 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.5s" begin="-0.1s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(192 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="0.7s" begin="-3.3s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(251 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.9s" begin="-4.7s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(349 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.1s" begin="-3.2s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(290 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.2s" begin="-0.5s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(77 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.8s" begin="-0.6s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(9 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="0.8s" begin="-3.3s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(169 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="0.8s" begin="-4.4s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(81 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.1s" begin="-4.9s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(308 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3s" begin="-4.8s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(186 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.1s" begin="-4.3s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(41 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.7s" begin="-1.6s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(354 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3s" begin="-3.4s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(214 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="0.7s" begin="-3s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(35 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.6s" begin="-1.3s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(169 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="0.7s" begin="-0.7s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(165 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2s" begin="-3.1s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(251 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.7s" begin="-4.1s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(164 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.8s" begin="-3.1s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(125 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.9s" begin="-1.1s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(312 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.9s" begin="-2.7s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(304 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.5s" begin="-1s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(310 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="0.7s" begin="-4.2s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(287 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.7s" begin="-0.4s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(147 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.3s" begin="-3.3s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(153 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.9s" begin="-2s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(55 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.1s" begin="-4.6s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(137 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.4s" begin="-3.3s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(17 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.4s" begin="-3.8s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(234 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.8s" begin="-3.1s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(344 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.2s" begin="-4.7s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(18 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.8s" begin="-3.1s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(247 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.5s" begin="-2s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(350 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.4s" begin="-5s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(338 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.1s" begin="-1.8s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(151 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1s" begin="-1.9s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(136 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.3s" begin="-2.7s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(153 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="0.7s" begin="-4s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(179 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1s" begin="-2.6s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(264 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.2s" begin="-0.1s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(192 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.2s" begin="-3.7s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(227 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.8s" begin="-2.3s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(346 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.3s" begin="-0.8s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(180 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.8s" begin="-1.5s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(109 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.6s" begin="-3.1s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(315 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.5s" begin="-2.9s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(258 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1s" begin="-0.1s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(243 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.5s" begin="0s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(129 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.6s" begin="-4.1s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(180 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.5s" begin="-2.7s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(66 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.6s" begin="-3.6s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(145 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.9s" begin="-4.3s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(296 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1s" begin="-1.4s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(197 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.4s" begin="-1.9s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(189 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.9s" begin="-3.9s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(183 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.1s" begin="-2.7s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(170 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.7s" begin="-2s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(59 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.7s" begin="-5s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(116 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.5s" begin="-2.7s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(61 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1s" begin="-1.8s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(159 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="4s" begin="-4.7s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(205 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.2s" begin="-2.3s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(169 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.7s" begin="-4.1s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(196 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.4s" begin="-2.5s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(118 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.7s" begin="-5s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(272 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.3s" begin="-0.8s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(355 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.3s" begin="-2.7s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(242 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="0.7s" begin="-3.7s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(139 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.6s" begin="-1s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(339 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2s" begin="-0.4s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(290 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.7s" begin="-4.4s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(182 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.3s" begin="-2.7s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(357 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.4s" begin="-1.7s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(137 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.9s" begin="-0.6s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(150 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.8s" begin="-3.3s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(251 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.9s" begin="-1.6s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(191 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="0.8s" begin="-0.3s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(273 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.1s" begin="-2.6s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(111 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.5s" begin="-2.7s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(230 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.5s" begin="-5s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(331 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.2s" begin="-1s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(347 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.3s" begin="-2.3s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(12 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1s" begin="-0.5s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(14 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.7s" begin="-3.7s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(299 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.7s" begin="-0.7s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(149 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.6s" begin="-1s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(144 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.9s" begin="-3s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(281 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.1s" begin="-2.9s" repeatCount="indefinite" />
-					</path>
-					<path d="M 50 50 h50" transform="rotate(331 50 50)">
-						<animate attributeName="stroke-dashoffset" values="50;0;-50" dur="0.8s" begin="-4.6s" repeatCount="indefinite" />
-					</path>
-				</g>
-			</g>
-			<g fill="none" stroke="#76FF03" stroke-dasharray="50" stroke-dashoffset="50" stroke-width="0.5" mask="url(#m2)">
-				<use href="#hyper" transform="translate(0 -30)" />
-			</g>
-			<g fill="none" stroke="#76FF03" stroke-dasharray="50" stroke-dashoffset="50" stroke-width="0.5" mask="url(#m3)">
-				<g transform="translate(0 30)">
-					<use href="#hyper" transform="rotate(73 50 50)" />
-				</g>
-			</g>
-		</svg>
-	</div>
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" id="leimoHyperspace"
+            class="logo">
+            <mask id="m1">
+                <path fill="#fff"
+                    d="M 50 0 a 50 50 90 1 0 0.01 0 m 0 30 a 20 20 90 1 1 -0.01 0 m -10 15 h 20 v 10 h -20 z" />
+            </mask>
+            <mask id="m2">
+                <path fill="#fff" d="M 20 0 h 60 l -27 45 l -6 0 z m 30 10 a 10 10 90 1 0 0.01 0" />
+            </mask>
+            <mask id="m3">
+                <path fill="#fff" d="M 53 55 l 27 45 h -60 l 27 -45 z m -3 15 a 10 10 90 1 0 0.01 0" />
+            </mask>
+            <g fill="none" stroke="#00f" stroke-dasharray="50" stroke-dashoffset="50" stroke-width="0.5"
+                mask="url(#m1)">
+                <g id="hyper">
+                    <path d="M 50 50 h50" transform="rotate(304 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.1s" begin="-3.2s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(121 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.6s" begin="-1.3s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(274 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.4s" begin="-0.6s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(268 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.6s" begin="-1.6s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(210 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.7s" begin="-1s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(260 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.4s" begin="-4.6s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(131 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.3s" begin="-3.4s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(52 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.8s" begin="-4.9s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(319 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.7s" begin="-3.3s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(43 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2s" begin="-3s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(217 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.3s" begin="-0.7s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(270 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.5s" begin="-0.1s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(192 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="0.7s" begin="-3.3s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(251 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.9s" begin="-4.7s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(349 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.1s" begin="-3.2s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(290 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.2s" begin="-0.5s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(77 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.8s" begin="-0.6s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(9 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="0.8s" begin="-3.3s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(169 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="0.8s" begin="-4.4s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(81 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.1s" begin="-4.9s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(308 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3s" begin="-4.8s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(186 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.1s" begin="-4.3s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(41 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.7s" begin="-1.6s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(354 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3s" begin="-3.4s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(214 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="0.7s" begin="-3s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(35 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.6s" begin="-1.3s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(169 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="0.7s" begin="-0.7s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(165 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2s" begin="-3.1s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(251 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.7s" begin="-4.1s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(164 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.8s" begin="-3.1s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(125 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.9s" begin="-1.1s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(312 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.9s" begin="-2.7s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(304 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.5s" begin="-1s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(310 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="0.7s" begin="-4.2s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(287 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.7s" begin="-0.4s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(147 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.3s" begin="-3.3s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(153 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.9s" begin="-2s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(55 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.1s" begin="-4.6s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(137 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.4s" begin="-3.3s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(17 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.4s" begin="-3.8s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(234 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.8s" begin="-3.1s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(344 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.2s" begin="-4.7s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(18 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.8s" begin="-3.1s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(247 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.5s" begin="-2s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(350 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.4s" begin="-5s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(338 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.1s" begin="-1.8s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(151 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1s" begin="-1.9s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(136 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.3s" begin="-2.7s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(153 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="0.7s" begin="-4s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(179 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1s" begin="-2.6s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(264 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.2s" begin="-0.1s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(192 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.2s" begin="-3.7s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(227 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.8s" begin="-2.3s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(346 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.3s" begin="-0.8s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(180 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.8s" begin="-1.5s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(109 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.6s" begin="-3.1s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(315 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.5s" begin="-2.9s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(258 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1s" begin="-0.1s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(243 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.5s" begin="0s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(129 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.6s" begin="-4.1s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(180 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.5s" begin="-2.7s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(66 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.6s" begin="-3.6s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(145 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.9s" begin="-4.3s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(296 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1s" begin="-1.4s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(197 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.4s" begin="-1.9s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(189 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.9s" begin="-3.9s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(183 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.1s" begin="-2.7s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(170 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.7s" begin="-2s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(59 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.7s" begin="-5s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(116 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.5s" begin="-2.7s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(61 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1s" begin="-1.8s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(159 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="4s" begin="-4.7s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(205 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.2s" begin="-2.3s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(169 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.7s" begin="-4.1s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(196 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.4s" begin="-2.5s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(118 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.7s" begin="-5s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(272 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.3s" begin="-0.8s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(355 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.3s" begin="-2.7s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(242 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="0.7s" begin="-3.7s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(139 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.6s" begin="-1s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(339 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2s" begin="-0.4s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(290 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.7s" begin="-4.4s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(182 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.3s" begin="-2.7s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(357 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.4s" begin="-1.7s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(137 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.9s" begin="-0.6s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(150 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.8s" begin="-3.3s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(251 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.9s" begin="-1.6s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(191 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="0.8s" begin="-0.3s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(273 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.1s" begin="-2.6s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(111 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.5s" begin="-2.7s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(230 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.5s" begin="-5s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(331 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.2s" begin="-1s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(347 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.3s" begin="-2.3s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(12 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1s" begin="-0.5s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(14 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.7s" begin="-3.7s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(299 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="3.7s" begin="-0.7s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(149 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.6s" begin="-1s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(144 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="1.9s" begin="-3s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(281 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="2.1s" begin="-2.9s"
+                            repeatCount="indefinite" />
+                    </path>
+                    <path d="M 50 50 h50" transform="rotate(331 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="50;0;-50" dur="0.8s" begin="-4.6s"
+                            repeatCount="indefinite" />
+                    </path>
+                </g>
+            </g>
+            <g fill="none" stroke="#76FF03" stroke-dasharray="50" stroke-dashoffset="50" stroke-width="0.5"
+                mask="url(#m2)">
+                <use href="#hyper" transform="translate(0 -30)" />
+            </g>
+            <g fill="none" stroke="#76FF03" stroke-dasharray="50" stroke-dashoffset="50" stroke-width="0.5"
+                mask="url(#m3)">
+                <g transform="translate(0 30)">
+                    <use href="#hyper" transform="rotate(73 50 50)" />
+                </g>
+            </g>
+        </svg>
+    </div>
 
-	<main class="content">
-		<div class="grid">
-			<!-- Links will be populated here by JavaScript -->
-		</div>
-	</main>
+    <main class="content">
+    </main>
 
-	<script>
-		const externalIcon = `<svg xmlns="http://www.w3.org/2000/svg" class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
+    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <script>
+        kofiWidgetOverlay.draw('leimapapa', {
+            'type': 'floating-chat',
+            'floating-chat.donateButton.text': 'Support me',
+            'floating-chat.donateButton.background-color': 'rgba(255, 255, 255, 0.1)',
+            'floating-chat.donateButton.text-color': '#fff'
+        });
+    </script>
 
-		function createCards() {
-			const grid = document.querySelector('.grid');
-			grid.innerHTML = links.map(link => `
-                <a href="${link.url}" class="link-card">
-                    ${link.icon || ''}
-                    <div class="link-content">
-                        <h2 class="link-title">
-                            ${link.title}
-                            ${externalIcon}
-                        </h2>
-                        <p class="link-description">${link.description}</p>
-                    </div>
-                </a>
-            `).join('');
-		}
-		createCards();
-	</script>
-	<script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
-	<script>
-		kofiWidgetOverlay.draw('leimapapa', {
-			'type': 'floating-chat',
-			'floating-chat.donateButton.text': 'Support me',
-			'floating-chat.donateButton.background-color': 'rgba(255, 255, 255, 0.1)',
-			'floating-chat.donateButton.text-color': '#fff'
-		});
-	</script>
-	<script>
+    <script>
+        const externalIcon = `<svg xmlns="http://www.w3.org/2000/svg" class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
+
+        // Function to group links by category
+        function groupLinksByCategory(linksArray) {
+            const grouped = {};
+            linksArray.forEach(link => {
+                const category = link.category || 'Other'; // Use 'Other' if category is missing
+                if (!grouped[category]) {
+                    grouped[category] = [];
+                }
+                grouped[category].push(link);
+            });
+            return grouped;
+        }
+
+        // Function to create and display the categorized content
+        function createCategorizedContent() {
+            const contentDiv = document.querySelector('.content');
+            contentDiv.innerHTML = ''; // Clear existing content
+
+            // Group links using the function
+            const linksByCategory = groupLinksByCategory(links); // 'links' comes from subpageLinks.js
+
+            // Sort categories alphabetically (optional)
+            const sortedCategories = Object.keys(linksByCategory).sort();
+
+            // Iterate through sorted categories and create sections
+            sortedCategories.forEach(category => {
+                const categoryLinks = linksByCategory[category];
+
+                // Create the category section HTML
+                const categorySectionHtml = `
+                    <section class="category-section">
+                        <h3 class="category-title">${category}</h3>
+                        <div class="category-grid">
+                            ${categoryLinks.map(link => `
+                                <a href="${link.url}" class="link-card">
+                                    ${link.icon || ''}
+                                    <div class="link-content">
+                                        <h2 class="link-title">
+                                            ${link.title}
+                                            ${externalIcon}
+                                        </h2>
+                                        <p class="link-description">${link.description}</p>
+                                    </div>
+                                </a>
+                            `).join('')}
+                        </div>
+                    </section>
+                `;
+                contentDiv.innerHTML += categorySectionHtml;
+
+                // --- Adsense Ad Placement Placeholder ---
+                // Strategically place Adsense ad units between categories
+                // Replace the div below with actual Adsense ad code
+                contentDiv.innerHTML += `
+                    <div class="adsense-placeholder">
+                        [Adsense Ad Unit Code Here]
+                        </div>
+                `;
+                // -------------------------------------
+            });
+        }
+
+        // Call the function to generate content when the page loads
+        window.onload = createCategorizedContent;
+
         // Add screen reader only style
         const style = document.createElement('style');
         style.textContent = `
