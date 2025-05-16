@@ -44,6 +44,20 @@ const links = [
         category: "Fun & Random"
     },
     {
+        title: "Street Name Generator",
+        description: "Create a street name with this handy randomizer",
+        url: "/StreetNameGenerator",
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-15h-10v-5h20v5h-10m-7 -2.5h4m3 0 h3m3 0h1" /></svg>`,
+        category: "Fun & Random"
+    },
+    {
+        title: "Blitz Play Randomizer",
+        description: "Create a unique custom NFL Blitz play with this handy randomizer",
+        url: "/BlitzPlayRandomizer",
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M 3 2 h 18 v 20 h -18 z m 3 10 h 12 m -1 2 a 1 1 0 0 0 0 3 a 1 1 0 0 0 0 -3 m 0 -4 v -2 l -7 -3 m -3 9 a 1 1 0 0 0 0 3 a 1 1 0 0 0 0 -3 m 0 -4 v -5 l 2 3 m 3 6 a 1 1 0 0 0 0 3 a 1 1 0 0 0 0 -3 m 0 -4 v -5" /></svg>`,
+        category: "Fun & Random"
+    },
+    {
         title: "Inflation Calculator",
         description: "Dead simple. Not exactly dead accurate",
         url: "/InflationCalculator",
@@ -69,13 +83,6 @@ const links = [
         description: "Unique widget displaying the time as trains",
         url: "/TrainClock",
         icon: `<svg xmlns="http://www.w3.org/2000/svg" class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M 19 18 l 1 0 a 1 2 0 0 0 0 -5 l -1 0 v -3 a 0.5 0.5 0 0 0 0 -1 h -3 a 0.5 0.5 0 0 0 0 1 v 3 l -2 0 a 1 1 0 0 0 -2 0 h -3 v -2 a 0.5 0.5 0 0 0 0 -1 h -6 a 0.5 0.5 0 0 0 0 1 v 6 a 1 1 0 0 0 1 1 a 1 1 0 0 0 5 0 a 1 1 0 0 0 5 0 a 1 1 0 0 0 5 0 z m -2 -11 a 1 1 0 0 0 -1 -2.5 a 4 4 0 0 0 -5 -1 a 1 1 0 0 0 -5 3.5 a 2 2 0 0 0 3 0 a 3 3 0 0 0 4 0 c 2 -1 2 1 4 0 z" /></svg>`,
-        category: "Widgets & Clocks"
-    },
-    {
-        title: "Street Name Generator",
-        description: "Create a street name with this handy randomizer",
-        url: "/StreetNameGenerator",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-15h-10v-5h20v5h-10m-7 -2.5h4m3 0 h3m3 0h1" /></svg>`,
         category: "Widgets & Clocks"
     },
     {
