@@ -65,6 +65,13 @@ const links = [
         category: "Widgets & Clocks"
     },
     {
+        title: "Blood Donation Wheel",
+        description: "Handy visual tool for determining which blood types can donate blood to others",
+        url: "/blooddonationwheel",
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle></svg>`,
+        category: "Widgets & Clocks"
+    },
+    {
         title: "SWOT Analysis Tool",
         description: "Who wants to struggle with a stupid powerpoint template when you can make a SWOT analysis with this simple tool and screenshot it",
         url: "/SWOT",
