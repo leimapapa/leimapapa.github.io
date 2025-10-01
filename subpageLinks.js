@@ -7,6 +7,13 @@ const links = [
         category: "AI"
     },
     {
+        title: "AI Dog Breed Classifier",
+        description: "Classify Dog Breeds using your camera or by uploading an image",
+        url: "/AI-Dog-Breed-Classifier",
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" class="tool-icon" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M 71 90 q -6 0 -6 -3 l 0 -7 l -1 -14 l -3 13 c 0 2 -1 5 2 6 c 3 1 0 4 -3 4 c -7 0 -6 -4 -5 -8 l 0 -5 l 1 -11 l -1 -3 c -9 -2 -14 -4 -21 -7 l -5 1 c -2 0 -2 3 -2 4 l -1 4 l -4 10 c -1 2 -1 4 1 6 c 4 6 4 12 0 10 h 0 l -3 -1 c -2 -1 -4 -7 -5 -12 l 0 -7 c -2 -1 -3 11 -2 14 l 2 6 c 1 2 -2 3 -3 3 c -4 0 -5 -4 -6 -7 l -1 -3 c -1 -4 -1 -9 1 -13 l 1 -2 c 2 -4 0 -4 -1 -9 c -2 -7 -3 -13 2 -19 c 0 -1 -1 -2 -2 -5 c -2 -6 -4 -15 0 -15 l 0 0 c 4 0 3 16 8 15 l 32 0 l 6 -2 l 9 -5 c 4 4 8 7 14 9 c 2 12 0 15 -2 23 l -1 3 c -1 5 -2 11 -1 16 l 0 3 c 0 3 2 3 3 4 c 2 1 2 4 -3 4 z m 9 -75 q 4 2 8 8 c 1 2 4 1 6 2 l 1 0 c 2 1 1 3 1 5 l -1 1 c -2 5 -8 5 -12 3 l -2 -1 h -1 l -1 1 l -3 2 c -6 -2 -10 -5 -14 -9 l 8 -10 l 3 -4 l 1 -3 s 3 -3 4 -3 c 2 1 2 3 2 5 l -1 3z"></path></svg>`,
+        category: "AI"
+    },
+    {
         title: "Robo Wars",
         description: "Create a brain for a fighting robot! Compete against other robots! Have a tournament! Learn basic code!",
         url: "/robo-wars",
